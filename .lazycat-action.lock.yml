@@ -1,29 +1,46 @@
 version: 2
 source:
     kind: git
-    version: 2026.11.8645
-    ref: refs/tags/v2026.11.14-8645.31e46f7
-    revision: 31e46f7618fab85d57bc736ee5b189a4d3419397
-    tag: v2026.11.14-8645.31e46f7
-fingerprint: sha256:4a8fe8fc2d03cb69e70ae18fc5f223c05d0bf46e100b4e651ee905a1059318c4
-status: submitted
+    version: 2026.11.8649
+    ref: refs/tags/v2026.11.14-8649.6538d8f
+    revision: 6538d8fdf7183cb75cf29b50b9e60f07ca1c641b
+    tag: v2026.11.14-8649.6538d8f
+fingerprint: sha256:564e063c4189d3653b2bc134efe8d07f229f583b708404af710d4b9f5305605d
+status: packaged
 images:
     - id: rsshub
-      source_ref: ghcr.io/diygod/rsshub:chromium-bundled-31e46f7618fab85d57bc736ee5b189a4d3419397@sha256:9348a0cbc6b75285b6278d939b0819074998d3b6f127186c26ae53474bca0ae1
-      source_digest: sha256:9348a0cbc6b75285b6278d939b0819074998d3b6f127186c26ae53474bca0ae1
-      runtime_ref: registry.lazycat.cloud/peter/diygod/rsshub:522991a5732116b6
+      source_ref: ghcr.io/diygod/rsshub:chromium-bundled-6538d8fdf7183cb75cf29b50b9e60f07ca1c641b@sha256:ac9b1de9c8a8e71f97731b3af3893f2eae6357e5f9ce30736286a4f9dc87cb23
+      source_digest: sha256:ac9b1de9c8a8e71f97731b3af3893f2eae6357e5f9ce30736286a4f9dc87cb23
+      runtime_ref: registry.lazycat.cloud/peter/diygod/rsshub:3647ab899c537c53
 application:
     package: cloud.lazycat.app.rsshub
-    version: 2026.11.8645
-    lpk_sha256: 51bd05504881a3a75fd701bf2f133f3cf931b7b299033bb9fea469e389c31a6e
+    version: 2026.11.8649
+    lpk_sha256: 0bbeb53307286f7ef4ca1d91f25d980fa4b9e051b96d445419fce615fc57a318
     changelog: |-
-        RSSHub update: v2026.11.14-8645.31e46f7
+        RSSHub update: v2026.11.14-8649.6538d8f
 
-        Upstream changes since 7072c35 (1 commits; up to 80 recent non-merge changes):
-        - fix(route/sspai): deduplicate series listed in multiple categories (31e46f761)
+        Upstream changes since 31e46f7 (19 commits; up to 80 recent non-merge changes):
+        - fix(route/nintendo): limit China news to the latest 30 items (6538d8fdf)
+        - fix(routes): restore sources and subscription scope after audit (900bd5dc2)
+        - fix(feeds): preserve cache variants and item identities (a5ddb6c76)
+        - fix(route/idolypride): use native Atom feed after REST API shutdown (60b1d2d23)
+        - fix(route/ai-bot): deduplicate repeated news links (4271f6a5b)
+        - feat(route/cohere): upgrade /cohere/blog to full-text feed via Sanity and Ghost APIs (#23881) (f7cf9bc4e)
+        - fix(nltimes): use official RSS and Google News fallback (3c866d066)
+        - fix(routes): add Google News fallback for blocked news sources (9dc14581a)
+        - fix(bilibili): use visitor cookies and correct WBI key (2405b4992)
+        - fix(routes): use official feeds for WAF-blocked sources (498864995)
+        - fix(routes): remove routes for dead or parked sources (e74338745)
+        - fix(lephoceen): deduplicate chrono items (3f3a802be)
+        - fix(oo-software): parse current changelog layout (348dc2630)
+        - fix(routes): handle missing metadata and offline streams (ab1df84a9)
+        - fix(routes): repair stale endpoints and examples (3af3deb46)
+        - fix(routes): remove duplicate feed items (3ce02a8fc)
+        - test: follow route redirects in full route test (fb1f68de6)
+        - fix(core): drop invalid item pubDate (bc0c47e4f)
 
-        https://github.com/DIYgod/RSSHub/compare/7072c35fc0465960745c4a2b563e01dd9bfe2d89...31e46f7618fab85d57bc736ee5b189a4d3419397
-packaged_at: 2026-11-14T07:08:19.024997593Z
+        https://github.com/DIYgod/RSSHub/compare/31e46f7618fab85d57bc736ee5b189a4d3419397...6538d8fdf7183cb75cf29b50b9e60f07ca1c641b
+packaged_at: 2026-11-14T18:34:54.652857772Z
 reviews:
     - id: 22676
       source:
@@ -266,7 +283,7 @@ reviews:
       fingerprint: sha256:4a8fe8fc2d03cb69e70ae18fc5f223c05d0bf46e100b4e651ee905a1059318c4
       application_version: 2026.11.8645
       lpk_sha256: 51bd05504881a3a75fd701bf2f133f3cf931b7b299033bb9fea469e389c31a6e
-      status: waiting
+      status: approved
       created_at: 2026-11-14T07:08:37.469Z
       submitted_at: 2026-11-14T07:08:37.618966901Z
-      checked_at: 2026-11-14T07:08:37.618967492Z
+      checked_at: 2026-11-14T18:32:23.747893206Z
