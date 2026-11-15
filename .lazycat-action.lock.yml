@@ -1,35 +1,29 @@
 version: 2
 source:
     kind: git
-    version: 2026.11.8655
-    ref: refs/tags/v2026.11.15-8655.2340a03
-    revision: 2340a032022c4382b2f5a165a2e3d3665ec06d89
-    tag: v2026.11.15-8655.2340a03
-fingerprint: sha256:55de7ee6ec9db5d8db69afa6c93e1339a3aa12e42e5c82cb7352bebd8802a4df
-status: submitted
+    version: 2026.11.8656
+    ref: refs/tags/v2026.11.15-8656.2fda19b
+    revision: 2fda19b5d996096a27025b5b821cf0a9b3787c1c
+    tag: v2026.11.15-8656.2fda19b
+fingerprint: sha256:d8bdea89777e67158ce7f4ad48d00e0197c13e576cd645c0be83359d0d4dd831
+status: packaged
 images:
     - id: rsshub
-      source_ref: ghcr.io/diygod/rsshub:chromium-bundled-2340a032022c4382b2f5a165a2e3d3665ec06d89@sha256:09bb5a91cd647a914ce3f0b3219d13772275e43752e9798c3a612c4275849b7e
-      source_digest: sha256:09bb5a91cd647a914ce3f0b3219d13772275e43752e9798c3a612c4275849b7e
-      runtime_ref: registry.lazycat.cloud/peter/diygod/rsshub:e5ae65682fd4e32f
+      source_ref: ghcr.io/diygod/rsshub:chromium-bundled-2fda19b5d996096a27025b5b821cf0a9b3787c1c@sha256:05a4f8543e3dbd6e62045d5e0375229474ca8a5150b6a1d517d87744fc306cb8
+      source_digest: sha256:05a4f8543e3dbd6e62045d5e0375229474ca8a5150b6a1d517d87744fc306cb8
+      runtime_ref: registry.lazycat.cloud/peter/diygod/rsshub:7324734f193c6393
 application:
     package: cloud.lazycat.app.rsshub
-    version: 2026.11.8655
-    lpk_sha256: 2de26c448b54c4732f3399ab5c43a8eba55869bf2e9f0353a7d70eafb7cfb0c4
+    version: 2026.11.8656
+    lpk_sha256: c6669b3d6b5a8eb85636991214e730b2cf70f7c4041e33e0faa721c2f8803802
     changelog: |-
-        RSSHub update: v2026.11.15-8655.2340a03
+        RSSHub update: v2026.11.15-8656.2fda19b
 
-        Upstream changes since 6538d8f (7 commits; up to 80 recent non-merge changes):
-        - fix(route/423down): read posts from the main list only (2340a0320)
-        - fix(route/kunchengblog): read essay sources from the source map JSON (ef3f6b126)
-        - fix(route/afr): skip Domain listing placeholders in articles (a8fa3eed5)
-        - fix(route/manyvids): take creator details from the store videos API (1b24fa01d)
-        - feat(route): add MiniMax full-text blog and news routes (#23882) (1444dfbc3)
-        - fix(route/google): resolve News thumbnails against Google News (56520b63d)
-        - fix(route/google): read titles of featured News cards (dc12c7867)
+        Upstream changes since 2340a03 (1 commits; up to 80 recent non-merge changes):
+        - fix(route/netflix): render blockquotes, superscript and unresolved embeds in newsroom articles (2fda19b5d)
 
-        https://github.com/DIYgod/RSSHub/compare/6538d8fdf7183cb75cf29b50b9e60f07ca1c641b...2340a032022c4382b2f5a165a2e3d3665ec06d89
-packaged_at: 2026-11-15T07:19:13.300897546Z
+        https://github.com/DIYgod/RSSHub/compare/2340a032022c4382b2f5a165a2e3d3665ec06d89...2fda19b5d996096a27025b5b821cf0a9b3787c1c
+packaged_at: 2026-11-15T19:11:25.365942084Z
 reviews:
     - id: 22676
       source:
@@ -300,7 +294,7 @@ reviews:
       fingerprint: sha256:55de7ee6ec9db5d8db69afa6c93e1339a3aa12e42e5c82cb7352bebd8802a4df
       application_version: 2026.11.8655
       lpk_sha256: 2de26c448b54c4732f3399ab5c43a8eba55869bf2e9f0353a7d70eafb7cfb0c4
-      status: waiting
+      status: approved
       created_at: 2026-11-15T07:19:28.464Z
       submitted_at: 2026-11-15T07:19:28.58201517Z
-      checked_at: 2026-11-15T07:19:28.582015711Z
+      checked_at: 2026-11-15T19:09:28.876952849Z
