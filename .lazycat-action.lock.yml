@@ -1,29 +1,30 @@
 version: 2
 source:
     kind: git
-    version: 2026.11.8656
-    ref: refs/tags/v2026.11.15-8656.2fda19b
-    revision: 2fda19b5d996096a27025b5b821cf0a9b3787c1c
-    tag: v2026.11.15-8656.2fda19b
-fingerprint: sha256:d8bdea89777e67158ce7f4ad48d00e0197c13e576cd645c0be83359d0d4dd831
-status: submitted
+    version: 2026.11.8658
+    ref: refs/tags/v2026.11.16-8658.b4990a8
+    revision: b4990a809138010275532fbab0efe8d55e2dc779
+    tag: v2026.11.16-8658.b4990a8
+fingerprint: sha256:e5fd2da27ae9b9db980b63349c5007d0b33ed4451d768ac97f3170feae3f606d
+status: packaged
 images:
     - id: rsshub
-      source_ref: ghcr.io/diygod/rsshub:chromium-bundled-2fda19b5d996096a27025b5b821cf0a9b3787c1c@sha256:05a4f8543e3dbd6e62045d5e0375229474ca8a5150b6a1d517d87744fc306cb8
-      source_digest: sha256:05a4f8543e3dbd6e62045d5e0375229474ca8a5150b6a1d517d87744fc306cb8
-      runtime_ref: registry.lazycat.cloud/peter/diygod/rsshub:7324734f193c6393
+      source_ref: ghcr.io/diygod/rsshub:chromium-bundled-b4990a809138010275532fbab0efe8d55e2dc779@sha256:cad65130c8ba55becabf03f4519e229f5057ba7051e381da50f641dff9c5c6e9
+      source_digest: sha256:cad65130c8ba55becabf03f4519e229f5057ba7051e381da50f641dff9c5c6e9
+      runtime_ref: registry.lazycat.cloud/peter/diygod/rsshub:b7346af16ee4ab31
 application:
     package: cloud.lazycat.app.rsshub
-    version: 2026.11.8656
-    lpk_sha256: c6669b3d6b5a8eb85636991214e730b2cf70f7c4041e33e0faa721c2f8803802
+    version: 2026.11.8658
+    lpk_sha256: 11857c2fce3c93d0e8da833ed660ecfec98aff7ae5c1e7dd0548d45904bea780
     changelog: |-
-        RSSHub update: v2026.11.15-8656.2fda19b
+        RSSHub update: v2026.11.16-8658.b4990a8
 
-        Upstream changes since 2340a03 (1 commits; up to 80 recent non-merge changes):
-        - fix(route/netflix): render blockquotes, superscript and unresolved embeds in newsroom articles (2fda19b5d)
+        Upstream changes since 2fda19b (2 commits; up to 80 recent non-merge changes):
+        - feat(route/80lv): add 80 Level full-text articles route (#23885) (b4990a809)
+        - perf: restore route performance before gpt sweep (a56c732) (#23884) (a747f0e95)
 
-        https://github.com/DIYgod/RSSHub/compare/2340a032022c4382b2f5a165a2e3d3665ec06d89...2fda19b5d996096a27025b5b821cf0a9b3787c1c
-packaged_at: 2026-11-15T19:11:25.365942084Z
+        https://github.com/DIYgod/RSSHub/compare/2fda19b5d996096a27025b5b821cf0a9b3787c1c...b4990a809138010275532fbab0efe8d55e2dc779
+packaged_at: 2026-11-16T07:24:25.227004376Z
 reviews:
     - id: 22676
       source:
@@ -308,7 +309,7 @@ reviews:
       fingerprint: sha256:d8bdea89777e67158ce7f4ad48d00e0197c13e576cd645c0be83359d0d4dd831
       application_version: 2026.11.8656
       lpk_sha256: c6669b3d6b5a8eb85636991214e730b2cf70f7c4041e33e0faa721c2f8803802
-      status: waiting
+      status: approved
       created_at: 2026-11-15T19:11:40.684Z
       submitted_at: 2026-11-15T19:11:40.841690363Z
-      checked_at: 2026-11-15T19:11:40.841691044Z
+      checked_at: 2026-11-16T07:22:21.063447773Z
