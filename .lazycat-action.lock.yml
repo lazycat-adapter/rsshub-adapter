@@ -1,42 +1,37 @@
 version: 2
 source:
     kind: git
-    version: 2026.11.8660
-    ref: refs/tags/v2026.11.16-8660.1c6f945
-    revision: 1c6f9457b6ac365be5772801526eaa2383eee861
-    tag: v2026.11.16-8660.1c6f945
-fingerprint: sha256:04acaf916145097e14db7bd3992ebb5f936cdadb5693f62dca3270e0462753a6
-status: submitted
+    version: 2026.11.8661
+    ref: refs/tags/v2026.11.17-8661.cf95739
+    revision: cf957392f2d1a42085f182fca83caa6e7a293359
+    tag: v2026.11.17-8661.cf95739
+fingerprint: sha256:0fe3c7a3b21e40fa271f25425ac58bcf007fc1716703e87bf6fd6d19691c9548
+status: packaged
 images:
     - id: rsshub
-      source_ref: ghcr.io/diygod/rsshub:chromium-bundled-1c6f9457b6ac365be5772801526eaa2383eee861@sha256:f47b087b47e63e460964fcd17ff8ce24b00f8aa9d0480a10b4ef1e3c7f04f354
-      source_digest: sha256:f47b087b47e63e460964fcd17ff8ce24b00f8aa9d0480a10b4ef1e3c7f04f354
-      runtime_ref: registry.lazycat.cloud/peter/diygod/rsshub:1cc239676d79c2d5
+      source_ref: ghcr.io/diygod/rsshub:chromium-bundled-cf957392f2d1a42085f182fca83caa6e7a293359@sha256:1dafa8c0a8545b47e3d5d6aa23283e6352b1aaea76d9f23381d5a262c4ac9e29
+      source_digest: sha256:1dafa8c0a8545b47e3d5d6aa23283e6352b1aaea76d9f23381d5a262c4ac9e29
+      runtime_ref: registry.lazycat.cloud/peter/diygod/rsshub:3f1a7ff195f4cf4f
 application:
     package: cloud.lazycat.app.rsshub
-    version: 2026.11.8660
-    lpk_sha256: 434957e4daf6115383875654ace65c56fc50e9deb9f932cbe4a0b250484e3b0b
+    version: 2026.11.8661
+    lpk_sha256: 4e114459f2dc34980c8b133217688ad93291580b6bf8cd612877a71bb1b54e7b
     changelog: |-
-        RSSHub update: v2026.11.16-8660.1c6f945
+        RSSHub update: v2026.11.17-8661.cf95739
 
-        Upstream changes since b4990a8 (14 commits; up to 80 recent non-merge changes):
-        - feat(route/tryprofound): add Profound Research Hub route (#23905) (1c6f9457b)
-        - fix(route/nautiljon): read titles of age-restricted manga releases (24cd4e8f3)
-        - chore(deps): bump jsdom from 31.0.0 to 31.0.1 (#23896) (e7957511c)
-        - chore(deps): bump @honeybadger-io/js from 6.17.0 to 6.17.1 (#23901) (201e6ed96)
-        - chore(deps): bump postal-mime from 4.2.0 to 4.2.1 (#23900) (be78a9749)
-        - chore(deps-dev): bump rolldown from 1.3.1 to 1.3.2 (#23899) (044fdbd5d)
-        - chore(deps): bump rate-limiter-flexible from 11.4.0 to 11.4.1 (#23897) (4a807ed35)
-        - chore(deps-dev): bump discord-api-types from 0.38.58 to 0.38.59 (#23895) (72bc2101b)
-        - chore(deps): bump the opentelemetry group with 2 updates (#23891) (73fdec7e3)
-        - chore(deps-dev): bump oxlint-tsgolint (#23892) (3ad45ab44)
-        - chore(deps-dev): bump the msw group with 2 updates (#23890) (7583c26b8)
-        - chore(deps): bump cachix/install-nix-action from 31.11.3 to 31.11.5 (#23887) (68fe37e49)
-        - chore(deps): bump the hono group with 3 updates (#23889) (a61fec4f9)
-        - test(utils/playwright): raise playwright run timeout to 30s (#23886) (38638e694)
+        Upstream changes since 1c6f945 (9 commits; up to 80 recent non-merge changes):
+        - feat(route): add Kimi Research Blog full-text route (#23907) (cf957392f)
+        - chore(nix): update dependencies hash to sha256-i07PcO8GQapzFcAIu4VMBtUX9EPiYNV3/dkHrE2YImY= (4a50bf66e)
+        - chore(deps): bump the nix group with 3 updates (#23904) (2ff3653d6)
+        - chore(deps): bump @googleapis/youtube from 40.0.2 to 40.1.0 (#23893) (9da6fdfc2)
+        - chore(deps): bump tldts from 7.4.19 to 7.5.1 (#23898) (252cc0365)
+        - chore(deps-dev): bump the cloudflare group across 1 directory with 5 updates (#23888) (3b8132746)
+        - chore(deps): bump @sentry/node from 11.11.0 to 11.12.0 (#23903) (d1c2319cd)
+        - chore(deps): bump sanitize-html from 2.18.1 to 2.18.2 (#23894) (389f00954)
+        - chore(deps): bump re2js from 2.9.1 to 2.10.0 (#23902) (323bf6674)
 
-        https://github.com/DIYgod/RSSHub/compare/b4990a809138010275532fbab0efe8d55e2dc779...1c6f9457b6ac365be5772801526eaa2383eee861
-packaged_at: 2026-11-16T22:37:12.468488859Z
+        https://github.com/DIYgod/RSSHub/compare/1c6f9457b6ac365be5772801526eaa2383eee861...cf957392f2d1a42085f182fca83caa6e7a293359
+packaged_at: 2026-11-17T08:36:11.821125023Z
 reviews:
     - id: 22676
       source:
