@@ -10,11 +10,29 @@ import tempfile
 import urllib.error
 import urllib.parse
 import urllib.request
+from github_api import github_json
 
 DIGEST = re.compile(r'sha256:[a-f0-9]{64}')
 TAG = re.compile(r'v([0-9]{4})\.([0-9]{2})\.([0-9]{2})-([0-9]+)\.([a-f0-9]{7})')
 ROOT = Path(__file__).resolve().parents[1]
 ACCEPT = ', '.join(('application/vnd.oci.image.index.v1+json','application/vnd.oci.image.manifest.v1+json','application/vnd.docker.distribution.manifest.list.v2+json','application/vnd.docker.distribution.manifest.v2+json'))
+API='https://api.github.com/repos/DIYgod/RSSHub'
+
+def published_release(tag=None):
+    result=github_json(API+('/releases/tags/'+urllib.parse.quote(tag,safe='') if tag else '/releases/latest'))
+    if result.get('draft') or result.get('prerelease') or not TAG.fullmatch(result.get('tag_name','')) or (tag and result['tag_name']!=tag):
+        raise ValueError('Expected the selected stable published RSSHub Release')
+    return result
+
+def tag_revision(tag,repository='https://github.com/DIYgod/RSSHub.git'):
+    if not TAG.fullmatch(tag):raise ValueError('Invalid RSSHub stable tag')
+    ref='refs/tags/'+tag
+    raw=subprocess.check_output(['git','ls-remote','--tags',str(repository),ref,ref+'^{}'],text=True,timeout=90)
+    refs={name:sha for line in raw.splitlines() if len(parts:=line.split())==2 for sha,name in [parts]}
+    sha=refs.get(ref+'^{}') or refs.get(ref)
+    if not sha or not re.fullmatch('[a-f0-9]{40}',sha):raise ValueError('RSSHub tag is missing or invalid')
+    release_identity(tag,sha)
+    return sha
 
 def fetch(url, headers=None):
     req=urllib.request.Request(url,headers={'User-Agent':'lazycat-rsshub-adapter/1',**(headers or {})})
@@ -120,6 +138,7 @@ def inspect_image(reference):
 def changelog():
     tag=os.environ['LAZYCAT_SOURCE_TAG'];sha=os.environ['LAZYCAT_SOURCE_REVISION']
     release_identity(tag,sha)
+    published_release(tag)
     # Supplied by the executor from its parsed state, including dry-run. This
     # command runs BEFORE prepare installs dependencies: use only stdlib.
     previous=os.environ.get('LAZYCAT_PREVIOUS_SOURCE_REVISION')

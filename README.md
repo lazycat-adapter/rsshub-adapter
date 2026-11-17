@@ -22,6 +22,11 @@
 `LZC_API_TOKEN`（开发者 PAT），对应账号须有应用开发者/协作者权限。
 **不需要 `LAZYCAT_AUTO_PUBLISH` 或 Docker 仓库账号。**
 
+GitHub 元数据读取依赖 `lazycat-action >= v1.10.0`。执行器保管 Runner 自动提供的
+`GITHUB_TOKEN`，脚本通过仅允许当前上游仓库 Release/标签元数据的本机只读通道查询；
+独立验证步骤显式使用自动 Token。无需额外 GitHub PAT，也不会把 Token 传给容器。
+共享模块对限流、暂时网络/服务错误进行有界重试；标签提交号通过 Git 解析。
+
 Actions → **Update RSSHub for LazyCat** → Run workflow，选择 `main`。
 保留 `dry-run` 查看计划；取消勾选后才真实执行。
 北京时间约 **02:53、08:53、14:53、20:53** 检查，GitHub 可能延迟或跳过繁忙时段。

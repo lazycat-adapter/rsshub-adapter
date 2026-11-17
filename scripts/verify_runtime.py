@@ -16,7 +16,7 @@ import xml.etree.ElementTree as ET
 
 from contract import ROOT,CHECKS,recipe_hash,verify_cache_snapshot
 from static_registry import load_baseline
-from upstream import release_identity,inspect_image,verify_image_config,content_hash,fetch,upgrade_baseline
+from upstream import release_identity,inspect_image,verify_image_config,content_hash,fetch,upgrade_baseline,published_release
 
 def docker(*args, binary=False):
     data=subprocess.check_output(['docker',*args],text=not binary)
@@ -25,7 +25,7 @@ def docker(*args, binary=False):
 def main():
     tag=os.environ.get('LAZYCAT_SOURCE_TAG') or os.environ['LAZYCAT_SOURCE_REF'].removeprefix('refs/tags/')
     version,reference=release_identity(tag,os.environ['LAZYCAT_SOURCE_REVISION'])
-    release=json.loads(fetch('https://api.github.com/repos/DIYgod/RSSHub/releases/tags/'+urllib.parse.quote(tag,safe='')))
+    release=published_release(tag)
     if release['tag_name']!=tag or release['draft'] or release['prerelease']:raise ValueError('Selected tag is not a stable published Release')
     if version!=os.environ['LAZYCAT_SOURCE_VERSION'] or reference!=os.environ['LAZYCAT_OUTPUT_IMAGE']:
         raise ValueError('Executor selected inconsistent source/output')
