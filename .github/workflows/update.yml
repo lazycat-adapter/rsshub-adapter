@@ -41,6 +41,8 @@ jobs:
     timeout-minutes: 45
     steps:
       - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
       - name: Validate adapter and tested-delivery guards
         run: |
           python3 -m pip install --disable-pip-version-check -r requirements-test.txt
@@ -64,9 +66,11 @@ jobs:
         if: github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && !inputs.dry-run)
         env:
           LZC_API_TOKEN: ${{ secrets.LZC_API_TOKEN }}
+          GITHUB_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
-          git push --dry-run origin "HEAD:${GITHUB_REF_NAME}"
+          auth="$(printf 'x-access-token:%s' "${GITHUB_TOKEN}" | base64 -w 0)"
+          git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic ${auth}" push --dry-run origin "HEAD:${GITHUB_REF_NAME}"
           test -n "${LZC_API_TOKEN}" || { echo '::error::Configure LZC_API_TOKEN in this adapter Repository secrets.'; exit 1; }
           curl --fail --silent --show-error --retry 2 \
             --header "X-API-Token: ${LZC_API_TOKEN}" \

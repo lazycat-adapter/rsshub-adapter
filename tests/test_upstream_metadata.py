@@ -22,3 +22,9 @@ class MetadataTests(unittest.TestCase):
             self.assertEqual(upstream.published_release(tag)['tag_name'],tag)
         with patch.object(upstream,'github_json',return_value={'tag_name':tag,'draft':False,'prerelease':True}):
             with self.assertRaises(ValueError):upstream.published_release(tag)
+
+    def test_selected_release_rejects_changed_full_revision_with_same_short_prefix(self):
+        tag='v2026.11.06-8596.4be79cd';sha='4be79cd'+'a'*33
+        with patch.object(upstream,'published_release',return_value={'tag_name':tag}),patch.object(upstream,'tag_revision',return_value='4be79cd'+'b'*33):
+            with self.assertRaisesRegex(ValueError,'moved'):
+                upstream.validate_selected_release(tag,sha)

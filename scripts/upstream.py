@@ -34,6 +34,12 @@ def tag_revision(tag,repository='https://github.com/DIYgod/RSSHub.git'):
     release_identity(tag,sha)
     return sha
 
+def validate_selected_release(tag,revision):
+    release_identity(tag,revision)
+    result=published_release(tag)
+    if tag_revision(tag)!=revision:raise ValueError('Selected RSSHub tag moved before validation')
+    return result
+
 def fetch(url, headers=None):
     req=urllib.request.Request(url,headers={'User-Agent':'lazycat-rsshub-adapter/1',**(headers or {})})
     with urllib.request.urlopen(req,timeout=60) as r:data=r.read(16*1024*1024+1)
@@ -138,7 +144,7 @@ def inspect_image(reference):
 def changelog():
     tag=os.environ['LAZYCAT_SOURCE_TAG'];sha=os.environ['LAZYCAT_SOURCE_REVISION']
     release_identity(tag,sha)
-    published_release(tag)
+    validate_selected_release(tag,sha)
     # Supplied by the executor from its parsed state, including dry-run. This
     # command runs BEFORE prepare installs dependencies: use only stdlib.
     previous=os.environ.get('LAZYCAT_PREVIOUS_SOURCE_REVISION')

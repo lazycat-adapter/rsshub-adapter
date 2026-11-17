@@ -1,11 +1,13 @@
-from pathlib import Path
-import sys
-sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'scripts'))
 import json
 import threading
 import unittest
+import urllib.request
+from unittest.mock import patch
 from http.server import BaseHTTPRequestHandler,ThreadingHTTPServer
 
+import sys
+from pathlib import Path
+sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'scripts'))
 from github_api import github_json
 
 class ReaderTests(unittest.TestCase):
@@ -48,5 +50,22 @@ class ReaderTests(unittest.TestCase):
         base=self.server(Redirect)
         with self.assertRaisesRegex(RuntimeError,'302'):github_json('https://api.github.com/repos/acme/app/releases/latest',{'LAZYCAT_GITHUB_API_URL':base,'LAZYCAT_GITHUB_API_SESSION':'a'*64})
         self.assertEqual(foreign,[]);self.assertEqual(len(calls),1)
+
+    def test_secondary_rate_limit_without_wait_header_fails_without_early_retry(self):
+        calls=[]
+        class Limited(BaseHTTPRequestHandler):
+            def do_GET(self):
+                calls.append(self.path);self.send_response(403);self.end_headers()
+                self.wfile.write(b'{"message":"secondary rate limit exceeded"}')
+            def log_message(self,*args):pass
+        base=self.server(Limited)
+        local=urllib.request.build_opener(urllib.request.ProxyHandler({}))
+        class Transport:
+            def open(self,request,timeout):
+                return local.open(urllib.request.Request(base+'/repos/acme/app/releases/latest',headers=request.headers),timeout=timeout)
+        with patch('github_api.urllib.request.build_opener',return_value=Transport()),patch('github_api.time.sleep') as sleep:
+            with self.assertRaisesRegex(RuntimeError,'rate limit'):
+                github_json('https://api.github.com/repos/acme/app/releases/latest',{'GITHUB_TOKEN':'token'})
+            self.assertEqual(len(calls),1);sleep.assert_not_called()
 
 if __name__=='__main__':unittest.main()
