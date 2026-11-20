@@ -2,7 +2,7 @@
 
 现有应用 **`cloud.lazycat.app.rsshub`** 的独立 GitHub 适配仓库。上游为
 [DIYgod/RSSHub](https://github.com/DIYgod/RSSHub)，执行器为
-[`wcaqrl/lazycat-action@v1`](https://github.com/wcaqrl/lazycat-action)。无需修改上游。
+[`lazycat-adapter/lazycat-action@v1`](https://github.com/lazycat-adapter/lazycat-action)。无需修改上游。
 
 ## 流程
 
@@ -18,7 +18,7 @@
 
 ## 配置
 
-本仓库 Settings → Secrets and variables → Actions → Repository secrets 设置
+在 `lazycat-adapter` 组织的 Actions secrets 中授权本仓库使用
 `LZC_API_TOKEN`（开发者 PAT），对应账号须有应用开发者/协作者权限。
 **不需要 `LAZYCAT_AUTO_PUBLISH` 或 Docker 仓库账号。**
 
