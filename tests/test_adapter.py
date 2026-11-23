@@ -104,4 +104,10 @@ class DeliveryTests(unittest.TestCase):
         with self.assertRaises(ValueError):verify_package.verify(self.root)
 
 
+class ManifestTests(unittest.TestCase):
+    def test_all_rsshub_routes_are_public_for_unauthenticated_feeds(self):
+        config = contract.load_config(ROOT / 'lzc-manifest.yml')
+        self.assertEqual(config['application'].get('public_path'), ['/'])
+
+
 if __name__=='__main__':unittest.main()

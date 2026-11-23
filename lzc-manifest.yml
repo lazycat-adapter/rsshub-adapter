@@ -5,6 +5,12 @@ usage: |
 application:
   subdomain: rsshub
   background_task: true
+  # RSSHub exposes user-selected feed routes below the application root.
+  # Keep the whole root public so feed readers can fetch subscriptions without
+  # a LazyCat account login. RSSHub does not provide a separate fixed prefix
+  # that covers all of its route families.
+  public_path:
+    - /
   routes:
     - /=http://rsshub:1200
 services:
